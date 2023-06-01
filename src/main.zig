@@ -5,18 +5,16 @@ const bytecode = @import("bytecode.zig");
 const inst = bytecode.instruction;
 
 pub const std_options = struct {
-
     pub const log_level = std.log.Level.info;
-
 };
 
-const code = 
+const code =
     inst.push(.i32, 1) ++
     inst.push(.i32, 2) ++
     inst.generic(.add, .i32);
 
 pub fn main() !void {
-    var stack_buffer: [1024] u8 align(8) = undefined;
+    var stack_buffer: [1024]u8 align(8) = undefined;
     var context = vm.Context.init(&stack_buffer);
     try context.execute(&code);
     const result = context.stack.peek(i32).*;

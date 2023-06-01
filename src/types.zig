@@ -140,5 +140,4 @@ pub const Primitive = enum(u8) {
     pub fn ZigVectorType(comptime self: Primitive) type {
         return [self.getDimensions()]self.ZigScalarType();
     }
-
 };
